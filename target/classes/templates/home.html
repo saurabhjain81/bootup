@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Getting started</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 50%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	padding: 8px;
+}
+
+th {
+	text-align: center;
+}
+
+td {
+	text-align: left;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+</style>
+<script>
+	function getCustomers() {
+
+		$('#results').find("tr:gt(0)").remove();
+		$.ajax({
+			url : "/employees"
+		}).then(function(data) {
+			var table = document.getElementById("results");
+			for (var k = 0; k < data.length; k++) {
+
+				var row = table.insertRow(k + 1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				cell1.innerHTML = data[k].firstName;
+				cell2.innerHTML = data[k].lastName;
+				cell3.innerHTML = data[k].group;
+
+			}
+
+		});
+	}
+
+	function getByLastName() {
+
+		$('#results').find("tr:gt(0)").remove();
+		$.ajax({
+			url : "/employee?lastName=" + $('#lastName').val()
+		}).then(function(data) {
+
+			var table = document.getElementById("results");
+			for (var k = 0; k < data.length; k++) {
+
+				var row = table.insertRow(k + 1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				cell1.innerHTML = data[k].firstName;
+				cell2.innerHTML = data[k].lastName;
+				cell3.innerHTML = data[k].group;
+
+			}
+
+		});
+	}
+</script>
+</head>
+<body>
+	<h1>Welcome!</h1>
+
+	<p>
+		Click <a th:href="@{/register}">here</a> to try out form data
+		validations.
+	</p>
+
+	<p>Also try few (GET) REST services by clicking below buttons.</p>
+	<p>
+		<button onclick="getCustomers();">Display All Employees</button>
+	</p>
+	<p>
+		Search By Last Name: <input type="text" id="lastName">
+		<button onclick="getByLastName();">Search</button>
+	</p>
+
+	<div id="all">
+		Employee Details are:
+		<table id="results">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Department</th>
+			</tr>
+		</table>
+
+	</div>
+
+</body>
+</html>
