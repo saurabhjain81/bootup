@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Built-By: Saurabhjain
 Build-Jdk: 10.0.2
-Implementation-Title: gs-authenticating-ldap
+Implementation-Title: bootup
 Implementation-Version: 0.1.0
 Implementation-Vendor-Id: org.springframework
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/gs-authenticating-ldap
+ ot-starter-parent/bootup
 Created-By: Maven Integration for Eclipse
 
