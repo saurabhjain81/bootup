@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<body>
+	<form action="#" th:action="@{/employee}" th:object="${customerForm}"
+		method="post">
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" th:field="*{firstName}" /></td>
+				<td th:if="${#fields.hasErrors('firstName')}"
+					th:errors="*{firstName}">Name Error</td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" th:field="*{lastName}" /></td>
+				<td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name
+					Error</td>
+			</tr>
+			<tr>
+				<td>Department</td>
+				<td><input type="text" th:field="*{group}" /></td>
+				<td th:if="${#fields.hasErrors('group')}" th:errors="*{group}">Group
+					Error</td>
+			</tr>
+			<tr>
+				<td><button type="submit">Submit</button></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
